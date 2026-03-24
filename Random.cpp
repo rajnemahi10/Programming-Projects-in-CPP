@@ -9,6 +9,38 @@ public:
     char* name;
     char* hostel;
     
+    //self implemented strtok
+    char *strtok(char *str, char *sep)
+    {
+        static char *m;
+        static int sepSize;
+
+        if (str == NULL)
+        {
+            int i = 0;
+            for (; i < sepSize; i++)
+            {
+                m++;
+            }
+
+            char *temp = strstr(m, sep);
+            if (temp == NULL)
+                return NULL;
+
+            sepSize = strlen(sep) - 1;
+            *temp = '\0';
+            return m;
+        }
+
+        m = str;
+        char *temp = strstr(m, sep);
+        if (temp == NULL)
+            return NULL;
+
+        sepSize = strlen(sep) - 1;
+        *temp = '\0';
+        return str;
+    }
     
 
 };
